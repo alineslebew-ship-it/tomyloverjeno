@@ -7,8 +7,7 @@
 <title>Petite Patisserie ♡</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Nunito:wght@400;500;600;700;800&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Nunito:wght@400;500;600;700&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
@@ -20,7 +19,6 @@
   --brown: #A65D68;
   --text: #79524D;
   --white: #FFFAF5;
-  --shadow: 0 10px 35px rgba(166,93,104,.12);
 }
 
 * {
@@ -29,8 +27,6 @@
   box-sizing: border-box;
 }
 
-html { scroll-behavior: smooth; }
-
 body {
   background: var(--cream);
   color: var(--text);
@@ -38,116 +34,192 @@ body {
   overflow-x: hidden;
 }
 
-button { font-family: inherit; cursor: pointer; }
-button:focus-visible { outline: 3px solid var(--darkrose); outline-offset: 4px; }
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
 
-h1,h2,h3 {
+h1, h2, h3 {
   font-family: 'Fraunces', serif;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .script {
   font-family: 'Caveat', cursive;
-  color: var(--darkrose);
 }
 
-.container {
-  width: min(1100px,90%);
-  margin: auto;
+.hidden {
+  display: none !important;
 }
 
-/* FLOATING DECORATIONS */
+/* DECORATION */
 
-.floating {
+body::before {
+  content: "✿  ♡  ✧  ♡  ✿";
   position: fixed;
+  top: 12px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--rose);
+  opacity: .35;
+  letter-spacing: 30px;
   pointer-events: none;
-  z-index: 0;
-  opacity: .55;
+  z-index: 10;
+}
+
+.sparkle {
+  position: fixed;
+  color: var(--darkrose);
+  opacity: .35;
+  pointer-events: none;
   animation: float 5s ease-in-out infinite;
 }
 
-.f1 { top: 25%; left: 2%; font-size: 25px; }
-.f2 { top: 70%; right: 3%; font-size: 28px; animation-delay: 2s; }
+.sparkle.one { top: 18%; left: 5%; font-size: 25px; }
+.sparkle.two { top: 55%; right: 6%; font-size: 30px; animation-delay: 1s; }
+.sparkle.three { bottom: 10%; left: 12%; font-size: 20px; animation-delay: 2s; }
 
 @keyframes float {
-  0%,100% { transform: translateY(0) rotate(-8deg); }
-  50% { transform: translateY(-15px) rotate(8deg); }
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-12px) rotate(12deg); }
 }
 
-/* NAVIGATION */
+/* INTRO */
+
+#intro {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px 20px;
+  background:
+    radial-gradient(circle at 20% 20%, #fffaf5 0, transparent 30%),
+    radial-gradient(circle at 80% 80%, #f8dce0 0, transparent 35%),
+    var(--cream);
+}
+
+.intro-card {
+  max-width: 650px;
+  width: 100%;
+  padding: 55px 25px;
+  border: 1px solid #e9a7b0;
+  border-radius: 180px 180px 35px 35px;
+  background: rgba(255,250,245,.75);
+  box-shadow: 0 15px 45px #a65d6815;
+  position: relative;
+}
+
+.intro-bow {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.intro-card .eyebrow {
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--darkrose);
+}
+
+.intro-card h1 {
+  font-size: clamp(40px, 8vw, 68px);
+  color: var(--brown);
+  margin: 15px 0;
+}
+
+.intro-card p {
+  line-height: 1.8;
+  margin: 10px 0 25px;
+}
+
+.primary-btn {
+  background: var(--darkrose);
+  color: white;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 40px;
+  font-size: 15px;
+  box-shadow: 0 5px 15px #d47f8c40;
+  transition: .25s;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  background: var(--brown);
+}
+
+/* MAIN WEBSITE */
+
+#website {
+  display: none;
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
 
 header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(255,241,232,.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(166,93,104,.15);
-}
-
-.navbar {
-  width: min(1150px,92%);
-  margin: auto;
-  min-height: 75px;
+  background: var(--white);
+  padding: 18px 5%;
+  border-bottom: 2px dashed var(--rose);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 15px;
 }
 
 .logo {
-  font-family: 'Fraunces',serif;
-  font-style: italic;
-  font-size: 23px;
+  font-family: 'Caveat', cursive;
+  font-size: 30px;
   color: var(--brown);
   white-space: nowrap;
-  text-decoration: none;
 }
 
-.nav-links {
+nav {
   display: flex;
-  align-items: center;
-  gap: 22px;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.nav-links button {
+nav button {
+  background: transparent;
   border: none;
-  background: none;
+  padding: 9px 12px;
   color: var(--text);
+  border-radius: 20px;
   font-size: 13px;
-  font-weight: 800;
-  transition: .3s;
+  transition: .2s;
 }
 
-.nav-links button:hover,
-.nav-links button.active {
-  color: var(--darkrose);
-}
-
-.music-button {
-  border: 1px solid var(--rose);
-  background: var(--white);
+nav button:hover,
+nav button.active {
+  background: var(--pink);
   color: var(--brown);
-  border-radius: 50px;
-  padding: 9px 14px;
-  font-size: 12px;
-  font-weight: 800;
-  white-space: nowrap;
 }
 
-.music-button.playing { background: var(--pink); }
+.music-btn {
+  border: 1px solid var(--rose);
+  color: var(--brown);
+  background: var(--cream);
+  padding: 9px 15px;
+  border-radius: 30px;
+  font-size: 12px;
+}
 
-/* PAGE TRANSITIONS */
+/* PAGE STRUCTURE */
 
 .page {
   display: none;
-  min-height: 75vh;
-  padding: 65px 0 90px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 55px 25px;
+  animation: appear .5s ease;
 }
 
 .page.active {
   display: block;
-  animation: appear .55s ease;
 }
 
 @keyframes appear {
@@ -155,381 +227,260 @@ header {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* GENERAL */
-
 .section-heading {
   text-align: center;
-  margin-bottom: 45px;
+  margin-bottom: 35px;
+}
+
+.section-heading .script {
+  font-size: 25px;
+  color: var(--darkrose);
 }
 
 .section-heading h2 {
-  font-size: clamp(32px,5vw,48px);
+  font-size: clamp(32px, 6vw, 45px);
   color: var(--brown);
-  font-style: italic;
+  margin: 5px 0;
 }
 
 .section-heading p {
   font-size: 14px;
-  margin-top: 10px;
   opacity: .8;
-}
-
-.eyebrow {
-  color: var(--darkrose);
-  font-family: 'Caveat',cursive;
-  font-size: 24px;
-}
-
-.btn {
-  display: inline-block;
-  border: 1px solid var(--darkrose);
-  background: var(--darkrose);
-  color: white;
-  padding: 13px 28px;
-  border-radius: 50px;
-  font-weight: 800;
-  font-size: 13px;
-  transition: .3s;
-}
-
-.btn:hover {
-  background: var(--brown);
-  transform: translateY(-3px);
 }
 
 /* HOME */
 
 .hero {
-  min-height: 650px;
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 30px;
-  padding: 45px 0 65px;
+  gap: 35px;
+  min-height: 430px;
 }
 
-.hero-text { position: relative; z-index: 2; }
+.hero-copy .script {
+  font-size: 30px;
+  color: var(--darkrose);
+}
 
-.hero-text h1 {
-  font-size: clamp(48px,7vw,78px);
-  line-height: 1.05;
+.hero-copy h1 {
+  font-size: clamp(42px, 7vw, 65px);
   color: var(--brown);
-  font-style: italic;
-  margin: 12px 0 18px;
+  line-height: 1.1;
+  margin: 8px 0 20px;
 }
 
-.hero-text p {
+.hero-copy p {
   line-height: 1.9;
-  font-size: 15px;
-  max-width: 360px;
-  margin-bottom: 28px;
+  max-width: 400px;
+  margin-bottom: 25px;
 }
 
-.hero-illustration {
+.hero-art {
+  min-height: 340px;
+  border-radius: 48% 48% 35px 35px;
+  background: linear-gradient(145deg, #f8dce0, #fffaf5);
+  border: 2px dashed var(--rose);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   position: relative;
-  height: 440px;
-  border-radius: 48% 48% 25px 25px;
-  background: linear-gradient(150deg,#F7DCE4,#F8C7CF 55%,#EFC5BC);
   overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: var(--shadow);
 }
 
-.hero-illustration:before {
-  content: "";
-  position: absolute;
-  width: 85%;
-  height: 95%;
-  border-radius: 50%;
-  background: rgba(255,250,245,.22);
-  top: 10%;
+.hero-art .bakery {
+  font-size: clamp(75px, 15vw, 130px);
+  filter: drop-shadow(0 10px 8px #a65d6820);
 }
 
-.cloud {
-  position: absolute;
-  color: white;
-  font-size: 37px;
-  opacity: .8;
+.hero-art .flowers {
+  font-size: 38px;
+  margin-top: 10px;
 }
 
-.cloud-a { top: 45px; left: 30px; }
-.cloud-b { top: 90px; right: 30px; }
-
-.shop {
-  position: relative;
-  z-index: 2;
-  width: 73%;
-  margin-top: 65px;
-  height: 270px;
-  background: #FFF0DF;
-  border: 5px solid #DFA3A1;
-  border-radius: 15px 15px 8px 8px;
-  box-shadow: 0 15px 25px rgba(125,68,70,.15);
-}
-
-.shop-roof {
-  position: absolute;
-  top: -55px;
-  left: -5%;
-  width: 110%;
-  height: 65px;
-  border-radius: 50% 50% 8px 8px;
-  background: repeating-linear-gradient(90deg,#D98290 0 35px,#FFF2E6 35px 70px);
-  border: 4px solid #DFA3A1;
-}
-
-.shop-sign {
-  position: absolute;
-  top: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #FFF9EE;
-  border: 2px solid #D99B9C;
-  border-radius: 50%;
-  padding: 12px 18px;
-  font-family: 'Fraunces',serif;
-  font-style: italic;
-  color: var(--brown);
-  white-space: nowrap;
-  font-size: 18px;
-}
-
-.shop-window {
-  position: absolute;
-  bottom: 0;
-  left: 12%;
-  width: 76%;
-  height: 115px;
-  background: #F4C5BB;
-  border: 7px solid #FFF9EE;
-  border-radius: 10px 10px 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  font-size: 39px;
-}
-
-.shop-door {
-  position: absolute;
-  bottom: 0;
-  right: -14px;
-  width: 48px;
-  height: 135px;
-  background: #DDA2A0;
-  border: 5px solid #FFF9EE;
-  border-radius: 30px 30px 0 0;
-}
-
-.shop-door:after {
-  content: "•";
-  color: #FFF0D8;
-  position: absolute;
-  right: 6px;
-  top: 65px;
-}
-
-.hero-decor {
-  position: absolute;
-  font-size: 42px;
-  z-index: 3;
-}
-
-.decor-cake { bottom: 38px; right: 10px; }
-.decor-flower { top: 90px; left: 8px; }
-.decor-star { top: 150px; right: 30px; font-size: 25px; }
-
-/* SPECIAL */
-
-.special-card {
+.special {
+  margin-top: 45px;
+  padding: 25px;
   background: var(--white);
-  border: 1px solid var(--pink);
+  border: 1px dashed var(--rose);
   border-radius: 25px;
-  padding: 30px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 25px;
-  max-width: 600px;
-  margin: 0 auto;
-  box-shadow: var(--shadow);
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.special-cake {
-  font-size: 80px;
-  background: var(--pink);
-  width: 125px;
-  height: 125px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.special-card h3 {
+.special h3 {
   color: var(--brown);
-  font-size: 24px;
-  margin: 8px 0;
+  font-size: 23px;
+}
+
+.special .cake {
+  font-size: 48px;
 }
 
 /* MENU */
 
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
 }
 
-.dessert-card {
+.menu-card {
   background: var(--white);
-  border-radius: 22px;
-  padding: 20px;
+  border: 1px solid #edc2c7;
+  border-radius: 25px;
+  padding: 25px 20px;
   text-align: center;
-  border: 1px solid var(--pink);
-  box-shadow: var(--shadow);
-  transition: .35s;
+  transition: .25s;
   cursor: pointer;
 }
 
-.dessert-card:hover {
-  transform: translateY(-9px) rotate(-1deg);
+.menu-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 10px 25px #a65d6815;
 }
 
-.dessert-art {
-  height: 160px;
-  border-radius: 16px;
-  background: var(--pink);
-  display: grid;
-  place-items: center;
-  font-size: 75px;
-  margin-bottom: 17px;
+.menu-card .dessert {
+  font-size: 65px;
+  margin-bottom: 12px;
 }
 
-.dessert-card:nth-child(2n) .dessert-art { background: #E6EBD9; }
-.dessert-card:nth-child(3n) .dessert-art { background: #F5E3D1; }
-
-.dessert-card h3 {
-  font-size: 23px;
+.menu-card h3 {
+  color: var(--brown);
+  font-size: 22px;
   margin-bottom: 7px;
 }
 
-.dessert-card p {
-  font-size: 12px;
-  opacity: .75;
-  line-height: 1.7;
+.menu-card p {
+  font-size: 13px;
+  line-height: 1.6;
 }
 
-.tap-label {
+.menu-card .price {
   display: block;
-  font-size: 11px;
+  margin-top: 15px;
   color: var(--darkrose);
-  font-weight: 800;
-  margin-top: 13px;
+  font-weight: 700;
 }
 
 /* MEMORIES */
 
 .memory-grid {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
 }
 
 .memory-card {
   background: var(--white);
   padding: 15px;
-  border-radius: 20px;
-  box-shadow: var(--shadow);
+  border-radius: 15px;
+  border: 1px solid #edc2c7;
   transform: rotate(-1deg);
 }
 
-.memory-card:nth-child(even) { transform: rotate(1deg); }
+.memory-card:nth-child(even) {
+  transform: rotate(1deg);
+}
 
-.memory-image {
-  height: 190px;
-  border-radius: 13px;
-  background: linear-gradient(135deg,#F8DCE0,#E6EBD9);
-  display: grid;
-  place-items: center;
+.memory-picture {
+  min-height: 190px;
+  background: var(--pink);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 65px;
 }
 
 .memory-card h3 {
-  font-size: 22px;
-  margin: 14px 5px 5px;
+  text-align: center;
+  margin: 15px 0 5px;
+  color: var(--brown);
 }
 
 .memory-card p {
+  text-align: center;
   font-size: 13px;
-  margin: 0 5px 8px;
-  line-height: 1.7;
+  line-height: 1.6;
+  padding-bottom: 10px;
 }
 
 /* SECRET RECIPE */
 
 .recipe-box {
-  max-width: 620px;
+  max-width: 650px;
   margin: auto;
+  padding: 35px 25px;
+  border: 1px dashed var(--darkrose);
+  border-radius: 30px;
   background: var(--white);
-  border: 2px dashed var(--rose);
-  border-radius: 25px;
-  padding: 40px 30px;
   text-align: center;
-  box-shadow: var(--shadow);
 }
 
-.recipe-icon {
-  font-size: 75px;
+.recipe-box .recipe-icon {
+  font-size: 65px;
   margin-bottom: 15px;
 }
 
-.recipe-box h2 {
-  font-size: 33px;
+.recipe-box h3 {
+  font-size: 28px;
   color: var(--brown);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-.recipe-content {
+.recipe-box p {
+  line-height: 1.8;
+}
+
+#recipeContent {
   display: none;
+  text-align: left;
   margin-top: 25px;
-  line-height: 2;
-  background: var(--pink);
+  padding: 20px;
+  background: var(--cream);
   border-radius: 18px;
-  padding: 25px;
+  line-height: 2;
 }
 
-.recipe-content.show {
+#recipeContent.show {
   display: block;
-  animation: appear .6s ease;
+  animation: appear .5s ease;
 }
 
 /* GUESTBOOK */
 
 .guestbook {
-  max-width: 600px;
+  max-width: 650px;
   margin: auto;
+}
+
+.guestbook-form {
   background: var(--white);
-  padding: 30px;
+  border: 1px dashed var(--rose);
   border-radius: 25px;
-  box-shadow: var(--shadow);
+  padding: 25px;
 }
 
 .guestbook input,
 .guestbook textarea {
   width: 100%;
-  padding: 14px;
-  margin: 10px 0;
-  border: 1px solid var(--pink);
-  background: #FFFAF7;
+  padding: 13px;
+  margin: 8px 0 15px;
+  border: 1px solid #edc2c7;
+  background: #fffaf5;
   border-radius: 12px;
-  font-family: inherit;
   color: var(--text);
+  font-family: inherit;
   outline: none;
 }
 
 .guestbook textarea {
-  height: 110px;
+  min-height: 110px;
   resize: vertical;
 }
 
@@ -538,792 +489,614 @@ header {
   border-color: var(--darkrose);
 }
 
-.guest-messages {
-  margin-top: 30px;
-  display: grid;
-  gap: 12px;
-}
-
-.message {
-  background: var(--pink);
-  padding: 18px;
-  border-radius: 15px;
-  line-height: 1.7;
+.guest-entry {
+  background: var(--white);
+  border-left: 4px solid var(--rose);
+  padding: 17px;
+  border-radius: 12px;
+  margin-top: 15px;
   overflow-wrap: anywhere;
 }
 
-.message strong { color: var(--brown); }
+.guest-entry h3 {
+  color: var(--brown);
+  margin-bottom: 5px;
+}
+
+.guest-entry p {
+  line-height: 1.6;
+  font-size: 14px;
+}
 
 /* MODAL */
 
 .modal {
   position: fixed;
   inset: 0;
-  z-index: 300;
+  background: #79524d80;
   display: none;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding: 20px;
-  background: rgba(75,47,48,.4);
-  backdrop-filter: blur(5px);
+  z-index: 30;
 }
 
 .modal.show {
   display: flex;
 }
 
-.modal-box {
-  width: min(420px,100%);
+.modal-card {
   background: var(--white);
-  padding: 35px;
-  text-align: center;
   border-radius: 25px;
-  position: relative;
-  animation: appear .35s ease;
+  padding: 35px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  animation: appear .3s ease;
 }
 
-.modal-emoji {
-  font-size: 75px;
-  margin-bottom: 15px;
+.modal-card .modal-icon {
+  font-size: 60px;
 }
 
-.modal-box h2 {
-  font-size: 30px;
-  margin-bottom: 10px;
+.modal-card h3 {
+  font-size: 26px;
   color: var(--brown);
+  margin: 10px 0;
 }
 
-.modal-box p {
-  line-height: 1.8;
-  font-size: 14px;
-}
-
-.close-modal {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  border: none;
-  background: none;
-  font-size: 24px;
-  color: var(--brown);
+.modal-card p {
+  line-height: 1.7;
+  margin-bottom: 20px;
 }
 
 /* FOOTER */
 
 footer {
-  background: #F5DDE0;
   text-align: center;
-  padding: 35px 15px;
-  color: var(--brown);
-  line-height: 2;
-}
-
-footer h2 {
-  font-style: italic;
-  font-size: 27px;
+  padding: 30px 15px;
+  color: var(--darkrose);
+  font-family: 'Caveat', cursive;
+  font-size: 21px;
 }
 
 /* RESPONSIVE */
 
-@media(max-width:800px) {
-  .navbar {
-    flex-wrap: wrap;
-    padding: 13px 0;
-  }
-
-  .nav-links {
-    order: 3;
-    width: 100%;
+@media (max-width: 700px) {
+  header {
     justify-content: center;
-    gap: 17px;
-    flex-wrap: wrap;
   }
-
-  .nav-links button { font-size: 11px; }
 
   .hero {
     grid-template-columns: 1fr;
-    text-align: center;
-    padding-top: 30px;
   }
 
-  .hero-text p {
+  .hero-copy {
+    text-align: center;
+  }
+
+  .hero-copy p {
     margin-left: auto;
     margin-right: auto;
   }
 
-  .hero-illustration {
-    height: 350px;
-    max-width: 500px;
-    width: 100%;
-    margin: auto;
+  .hero-art {
+    min-height: 260px;
   }
 
-  .menu-grid { grid-template-columns: repeat(2,1fr); }
-}
+  nav {
+    order: 3;
+    width: 100%;
+  }
 
-@media(max-width:500px) {
-  .menu-grid,.memory-grid { grid-template-columns: 1fr; }
+  nav button {
+    padding: 8px 9px;
+    font-size: 12px;
+  }
 
-  .special-card {
-    flex-direction: column;
+  .special {
+    justify-content: center;
     text-align: center;
   }
-
-  .hero-text h1 { font-size: 53px; }
-  .hero-illustration { height: 310px; }
-  .shop { width: 78%; }
-  .page { padding-top: 45px; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="floating f1">✿</div>
-<div class="floating f2">✿</div>
+<div class="sparkle one">✧</div>
+<div class="sparkle two">✿</div>
+<div class="sparkle three">♡</div>
+
+<audio id="bgMusic" src="./love.mp3" loop preload="auto"></audio>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="intro-card">
+    <div class="intro-bow">🎀</div>
+    <p class="eyebrow">a little place made with love</p>
+    <h1>Petite Patisserie</h1>
+    <p>
+      A little bakery, filled with<br>
+      sweet things — just like you. ♡
+    </p>
+    <button class="primary-btn" id="enterBtn">
+      Step Inside ♡
+    </button>
+    <p class="script" style="margin-top:20px;color:#d47f8c">
+      made with extra love, just for you
+    </p>
+  </div>
+</section>
+
+<!-- WEBSITE -->
+<div id="website">
 
 <header>
-<nav class="navbar">
+  <div class="logo">Petite Patisserie 🎀</div>
 
-  <a class="logo" href="#" onclick="showPage('home');return false;">
-    petite patisserie ♡
-  </a>
+  <nav>
+    <button class="active" data-page="home">Home</button>
+    <button data-page="menu">The Menu</button>
+    <button data-page="memories">Sweet Memories</button>
+    <button data-page="recipe">Secret Recipe</button>
+    <button data-page="guestbook">Guestbook</button>
+  </nav>
 
-  <div class="nav-links">
-    <button class="active" data-page="home" onclick="showPage('home')">Home</button>
-    <button data-page="menu" onclick="showPage('menu')">The Menu</button>
-    <button data-page="memories" onclick="showPage('memories')">Sweet Memories</button>
-    <button data-page="recipe" onclick="showPage('recipe')">Secret Recipe</button>
-    <button data-page="guestbook" onclick="showPage('guestbook')">Guestbook</button>
-  </div>
-
-  <button class="music-button" id="musicBtn" onclick="toggleMusic()">
-    ♫ Play Music
-  </button>
-
-</nav>
+  <button class="music-btn" id="musicBtn">♫ Playing</button>
 </header>
-
-<audio id="bgMusic" src="love.mp3" loop preload="auto"></audio>
 
 <main>
 
 <!-- HOME -->
-
 <section class="page active" id="home">
 
-<div class="container">
-
   <div class="hero">
-
-    <div class="hero-text">
-
-      <span class="eyebrow">A little place full of sweetness ♡</span>
-
-      <h1>Welcome to<br>Petite Patisserie.</h1>
-
+    <div class="hero-copy">
+      <p class="script">Welcome to</p>
+      <h1>Petite<br>Patisserie ♡</h1>
       <p>
-        A tiny bakery filled with lovely little things,
-        sweet surprises, pretty flowers and everything
-        that reminds me of you.
+        A tiny corner of sweetness, where every little
+        thing is made with love. Come in, take a seat,
+        and let yourself be surrounded by lovely things.
       </p>
-
-      <button class="btn" onclick="enterBakery()">
-        Step Inside ♡
+      <button class="primary-btn" onclick="showPage('menu')">
+        Explore the Menu →
       </button>
+    </div>
 
-      <p class="script" style="font-size:25px;margin-top:20px;">
-        freshly baked with love.
+    <div class="hero-art">
+      <div class="bakery">🏡</div>
+      <div class="flowers">🌷 🌸 🧁 🌼</div>
+      <p class="script" style="font-size:26px;margin-top:15px">
+        Sweet Things Here ♡
       </p>
-
     </div>
-
-    <div class="hero-illustration">
-
-      <span class="cloud cloud-a">☁</span>
-      <span class="cloud cloud-b">☁</span>
-
-      <span class="hero-decor decor-flower">🌷</span>
-      <span class="hero-decor decor-star">✧</span>
-      <span class="hero-decor decor-cake">🍰</span>
-
-      <div class="shop">
-
-        <div class="shop-roof"></div>
-        <div class="shop-sign">petite patisserie</div>
-
-        <div class="shop-window">
-          <span>🍰</span>
-          <span>🧁</span>
-          <span>🍓</span>
-        </div>
-
-        <div class="shop-door"></div>
-
-      </div>
-    </div>
-
   </div>
 
-  <div class="section-heading">
-    <span class="eyebrow">made specially for you</span>
-    <h2>Today's Special ♡</h2>
-    <p>A little sweetness picked just for someone special.</p>
-  </div>
-
-  <div class="special-card">
-
-    <div class="special-cake">🍓</div>
-
+  <div class="special">
     <div>
-      <span class="eyebrow">our signature dessert</span>
-      <h3>Strawberry Dream Cake</h3>
-
-      <p>
-        Soft, sweet, and filled with little reasons
-        why someone is so special.
+      <p class="script" style="font-size:22px;color:#d47f8c">
+        Today's Special ♡
       </p>
-
-      <button class="btn" style="margin-top:15px;"
-        onclick="openDessert(0)">
-        Discover more ♡
+      <h3>Strawberry Dream Cake</h3>
+      <p>A soft cake with fresh strawberries, made with extra love ♡</p>
+      <button class="primary-btn" style="margin-top:15px"
+        onclick="showPage('menu')">
+        See More →
       </button>
     </div>
-
+    <div class="cake">🍰</div>
   </div>
 
-</div>
 </section>
 
-
-<!-- THE MENU -->
-
+<!-- MENU -->
 <section class="page" id="menu">
 
-<div class="container">
-
   <div class="section-heading">
-    <span class="eyebrow">fresh from our little kitchen</span>
-    <h2>The Sweet Menu</h2>
-    <p>Every dessert has a little story behind it. Tap to discover!</p>
+    <p class="script">freshly baked with love</p>
+    <h2>The Menu</h2>
+    <p>Pick your sweetest little treat ♡</p>
   </div>
 
   <div class="menu-grid">
 
-    <div class="dessert-card" onclick="openDessert(0)">
-      <div class="dessert-art">🍓</div>
+    <div class="menu-card" onclick="openDessert('Strawberry Dream Cake','🍰','A fluffy little cake with strawberries, cream, and a whole lot of sweetness.')">
+      <div class="dessert">🍰</div>
       <h3>Strawberry Dream</h3>
-      <p>A little sweetness that makes every day better.</p>
-      <span class="tap-label">TAP TO OPEN ♡</span>
+      <p>Soft sponge cake with sweet strawberry cream.</p>
+      <span class="price">Made with love ♡</span>
     </div>
 
-    <div class="dessert-card" onclick="openDessert(1)">
-      <div class="dessert-art">🧁</div>
-      <h3>Little Cup of Joy</h3>
-      <p>A tiny reminder that happiness lives in little things.</p>
-      <span class="tap-label">TAP TO OPEN ♡</span>
+    <div class="menu-card" onclick="openDessert('Vanilla Cloud Cupcake','🧁','A tiny cupcake topped with vanilla frosting. Soft, sweet, and dreamy.')">
+      <div class="dessert">🧁</div>
+      <h3>Vanilla Cloud</h3>
+      <p>A fluffy cupcake with dreamy vanilla frosting.</p>
+      <span class="price">Made with love ♡</span>
     </div>
 
-    <div class="dessert-card" onclick="openDessert(2)">
-      <div class="dessert-art">🍰</div>
-      <h3>Forever Slice</h3>
-      <p>A special piece reserved for my favorite person.</p>
-      <span class="tap-label">TAP TO OPEN ♡</span>
+    <div class="menu-card" onclick="openDessert('Lovely Macarons','🍬','Colorful little macarons with a delicate and sweet filling.')">
+      <div class="dessert">🍬</div>
+      <h3>Lovely Macarons</h3>
+      <p>Little bites of sweetness in pastel colors.</p>
+      <span class="price">Made with love ♡</span>
     </div>
 
-    <div class="dessert-card" onclick="openDessert(3)">
-      <div class="dessert-art">🍪</div>
-      <h3>Cookie Hugs</h3>
-      <p>Warm little moments wrapped in sweetness.</p>
-      <span class="tap-label">TAP TO OPEN ♡</span>
+    <div class="menu-card" onclick="openDessert('Rose Milk Tea','🧋','A creamy, comforting drink with a little touch of sweetness.')">
+      <div class="dessert">🧋</div>
+      <h3>Rose Milk Tea</h3>
+      <p>A lovely drink for your cozy afternoon.</p>
+      <span class="price">Made with love ♡</span>
     </div>
 
-    <div class="dessert-card" onclick="openDessert(4)">
-      <div class="dessert-art">🍮</div>
-      <h3>Caramel Kisses</h3>
-      <p>Something sweet that stays in your heart.</p>
-      <span class="tap-label">TAP TO OPEN ♡</span>
+    <div class="menu-card" onclick="openDessert('Sweet Strawberry Tart','🥧','A buttery tart filled with cream and fresh strawberries.')">
+      <div class="dessert">🥧</div>
+      <h3>Strawberry Tart</h3>
+      <p>A buttery little tart with fruity sweetness.</p>
+      <span class="price">Made with love ♡</span>
     </div>
 
-    <div class="dessert-card" onclick="openDessert(5)">
-      <div class="dessert-art">🥐</div>
-      <h3>Morning Butter</h3>
-      <p>For all the beautiful mornings yet to come.</p>
-      <span class="tap-label">TAP TO OPEN ♡</span>
+    <div class="menu-card" onclick="openDessert('Lovely Tea Time','🍵','A warm cup of tea to make your day feel a little softer.')">
+      <div class="dessert">🍵</div>
+      <h3>Lovely Tea Time</h3>
+      <p>A warm little hug in your favorite cup.</p>
+      <span class="price">Made with love ♡</span>
     </div>
 
   </div>
-</div>
 </section>
 
-
-<!-- SWEET MEMORIES -->
-
+<!-- MEMORIES -->
 <section class="page" id="memories">
 
-<div class="container">
-
   <div class="section-heading">
-    <span class="eyebrow">a collection of little moments</span>
+    <p class="script">little moments, big feelings</p>
     <h2>Sweet Memories</h2>
-    <p>Some moments deserve to be kept forever.</p>
+    <p>Some moments deserve to be kept forever ♡</p>
   </div>
 
   <div class="memory-grid">
 
     <div class="memory-card">
-      <div class="memory-image">🌷</div>
-      <h3>Our First Chapter</h3>
-      <p>Every beautiful story starts somewhere. This is ours.</p>
+      <div class="memory-picture">🌷</div>
+      <h3>A Little Happiness</h3>
+      <p>Some ordinary days become special because of you.</p>
     </div>
 
     <div class="memory-card">
-      <div class="memory-image">🎀</div>
-      <h3>Little Things</h3>
-      <p>The smallest moments often become my favorite memories.</p>
+      <div class="memory-picture">🎀</div>
+      <h3>Our Little World</h3>
+      <p>A collection of tiny things that mean so much.</p>
     </div>
 
     <div class="memory-card">
-      <div class="memory-image">☁️</div>
-      <h3>Cloud Nine Days</h3>
-      <p>Days that somehow feel a little brighter because of you.</p>
+      <div class="memory-picture">🧸</div>
+      <h3>Favorite Moments</h3>
+      <p>Even the simplest memories can feel magical.</p>
     </div>
 
     <div class="memory-card">
-      <div class="memory-image">💌</div>
-      <h3>To Be Continued...</h3>
-      <p>There are still so many memories waiting to be made.</p>
+      <div class="memory-picture">💌</div>
+      <h3>For You</h3>
+      <p>A little reminder that you are appreciated.</p>
     </div>
 
   </div>
-
-  <p class="script" style="text-align:center;font-size:27px;margin-top:35px;">
-    and many more chapters to come ♡
-  </p>
-
-</div>
 </section>
 
-
 <!-- SECRET RECIPE -->
-
 <section class="page" id="recipe">
 
-<div class="container">
-
   <div class="section-heading">
-    <span class="eyebrow">shhh... it's a secret!</span>
-    <h2>The Secret Recipe</h2>
-    <p>Our baker has prepared something special.</p>
+    <p class="script">psst... a little secret</p>
+    <h2>Secret Recipe</h2>
+    <p>There is something special behind this recipe ♡</p>
   </div>
 
   <div class="recipe-box">
-
-    <div class="recipe-icon">🎀</div>
-
-    <h2>A Recipe for You</h2>
-
+    <div class="recipe-icon">🎂</div>
+    <h3>The Recipe of Us</h3>
     <p>
-      This recipe is not available on the regular menu.
-      Only someone special can unlock it.
+      A little sweetness, a sprinkle of happiness,
+      and an unlimited amount of love.
     </p>
 
-    <button class="btn" style="margin-top:25px;"
-      onclick="revealRecipe()">
-      Reveal the recipe ♡
+    <button class="primary-btn" id="recipeBtn" style="margin-top:20px">
+      Reveal the Recipe ♡
     </button>
 
-    <div class="recipe-content" id="recipeContent">
-
-      <span style="font-size:35px;">🍓</span>
-
-      <h3 style="font-family:'Fraunces';font-size:25px;">
-        The Sweetest Recipe
-      </h3>
-
+    <div id="recipeContent">
+      <h3 style="font-size:22px">Ingredients:</h3>
       <p>
-        2 cups of your beautiful smile.<br>
-        3 spoons of your kindness.<br>
-        A handful of silly little moments.<br>
-        A sprinkle of patience.<br>
-        And an unlimited amount of love.
+        🎀 2 cups of kindness<br>
+        🌷 3 spoons of happiness<br>
+        🍓 A handful of sweet memories<br>
+        🧁 A little bit of patience<br>
+        💗 Unlimited love
       </p>
 
-      <p style="margin-top:15px;font-weight:800;">
-        Mix everything together.<br>
-        Best served with you. ♡
+      <p style="margin-top:15px">
+        <strong>Instructions:</strong><br>
+        Mix everything together, add a little laughter,
+        and never forget to appreciate the little things.
+        Best served with a warm hug and a happy heart. ♡
       </p>
-
-      <p class="script" style="font-size:24px;margin-top:15px;">
-        made with love, especially for you.
-      </p>
-
     </div>
-
   </div>
-</div>
 </section>
 
-
 <!-- GUESTBOOK -->
-
 <section class="page" id="guestbook">
 
-<div class="container">
-
   <div class="section-heading">
-    <span class="eyebrow">leave a little sweetness behind</span>
-    <h2>Our Guestbook</h2>
-    <p>Every little note deserves a place here.</p>
+    <p class="script">leave a little note</p>
+    <h2>Guestbook</h2>
+    <p>Write something sweet before you leave ♡</p>
   </div>
 
   <div class="guestbook">
 
-    <h3 style="font-size:27px;text-align:center;">
-      A little note for the baker ♡
-    </h3>
+    <form class="guestbook-form" id="guestForm">
+      <label for="guestName">Your name</label>
+      <input id="guestName" type="text"
+        placeholder="What should we call you?" required maxlength="40">
 
-    <form id="guestForm">
-
-      <input id="guestName"
-        type="text"
-        maxlength="35"
-        placeholder="Your name..."
-        required>
-
+      <label for="guestMessage">Your little message</label>
       <textarea id="guestMessage"
-        maxlength="500"
-        placeholder="Write something sweet..."
-        required></textarea>
+        placeholder="Write something lovely..." required maxlength="500"></textarea>
 
-      <button class="btn" type="submit" style="width:100%;">
-        Leave a message ♡
+      <button class="primary-btn" type="submit">
+        Leave a Note ♡
       </button>
-
     </form>
 
-    <div class="guest-messages" id="guestMessages"></div>
+    <div id="guestEntries"></div>
 
   </div>
-</div>
 </section>
 
 </main>
 
+<footer>
+  made with love, sugar & little pink bows ♡
+</footer>
 
-<!-- DESSERT POPUP -->
+</div>
 
-<div class="modal" id="dessertModal" onclick="closeOutside(event)">
-
-  <div class="modal-box">
-
-    <button class="close-modal" onclick="closeModal()">×</button>
-
-    <div class="modal-emoji" id="modalEmoji">🍓</div>
-
-    <h2 id="modalTitle">Strawberry Dream</h2>
-
-    <p id="modalDescription">A little sweetness just for you.</p>
-
-    <button class="btn" style="margin-top:22px;"
-      onclick="closeModal()">
-      So sweet! ♡
+<!-- DESSERT MODAL -->
+<div class="modal" id="dessertModal">
+  <div class="modal-card">
+    <div class="modal-icon" id="modalIcon">🍰</div>
+    <h3 id="modalTitle">Dessert Name</h3>
+    <p id="modalDescription"></p>
+    <button class="primary-btn" onclick="closeDessert()">
+      Sounds Lovely ♡
     </button>
-
   </div>
 </div>
 
-
-<footer>
-  <h2>petite patisserie ♡</h2>
-  <p>A little bakery, made with a lot of love.</p>
-  <p style="font-size:12px;margin-top:8px;">
-    baked with love, just for you. ✿
-  </p>
-</footer>
-
-
 <script>
+const music = document.getElementById("bgMusic");
+const intro = document.getElementById("intro");
+const website = document.getElementById("website");
+const enterBtn = document.getElementById("enterBtn");
+const musicBtn = document.getElementById("musicBtn");
 
-// MUSIC
+let isPlaying = false;
 
-const music = document.getElementById('bgMusic');
-const musicBtn = document.getElementById('musicBtn');
+/* ENTER WEBSITE + START MUSIC */
 
-// START MUSIC WHEN ENTERING THE BAKERY
+enterBtn.addEventListener("click", function () {
 
-async function enterBakery() {
+  // Play is called immediately inside the user's click event.
+  // Do not move this call into a timeout or animation callback.
+  music.volume = 0.5;
 
-  // Play is called directly from the click interaction.
   const playPromise = music.play();
 
-  // Navigate into the bakery.
-  showPage('menu');
+  // Show the website immediately.
+  intro.style.display = "none";
+  website.style.display = "block";
 
-  try {
+  showPage("home");
 
-    await playPromise;
-
-    musicBtn.innerHTML = '♫ Playing...';
-    musicBtn.classList.add('playing');
-
-  } catch(error) {
-
-    musicBtn.innerHTML = '♫ Play Music';
-    musicBtn.classList.remove('playing');
-
-    console.log('Music could not be played:', error);
-
+  if (playPromise !== undefined) {
+    playPromise.then(() => {
+      isPlaying = true;
+      updateMusicButton();
+    }).catch((error) => {
+      isPlaying = false;
+      updateMusicButton();
+      console.log("Browser blocked audio playback:", error);
+    });
   }
+});
 
+/* MUSIC BUTTON */
+
+function updateMusicButton() {
+  musicBtn.textContent = isPlaying ? "♫ Playing" : "♫ Play Music";
 }
 
-// MUSIC ON/OFF BUTTON
+musicBtn.addEventListener("click", function () {
 
-async function toggleMusic() {
-
-  if(music.paused) {
-
-    try {
-
-      await music.play();
-
-      musicBtn.innerHTML = '♫ Playing...';
-      musicBtn.classList.add('playing');
-
-    } catch(error) {
-
-      alert('Please check that love.mp3 is in the same folder as index.html.');
-
-    }
-
-  } else {
-
+  if (isPlaying) {
     music.pause();
-
-    musicBtn.innerHTML = '♫ Play Music';
-    musicBtn.classList.remove('playing');
-
+    isPlaying = false;
+    updateMusicButton();
+    return;
   }
 
-}
-
-// UPDATE BUTTON IF AUDIO STOPS
-
-music.addEventListener('pause', () => {
-  musicBtn.innerHTML = '♫ Play Music';
-  musicBtn.classList.remove('playing');
-});
-
-music.addEventListener('play', () => {
-  musicBtn.innerHTML = '♫ Playing...';
-  musicBtn.classList.add('playing');
-});
-
-
-// PAGE NAVIGATION
-
-function showPage(pageId) {
-
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active');
+  music.play().then(() => {
+    isPlaying = true;
+    updateMusicButton();
+  }).catch((error) => {
+    console.log("Music playback failed:", error);
+    updateMusicButton();
   });
 
-  document.querySelectorAll('.nav-links button').forEach(btn => {
-    btn.classList.remove('active');
+});
+
+/* KEEP BUTTON IN SYNC */
+
+music.addEventListener("play", () => {
+  isPlaying = true;
+  updateMusicButton();
+});
+
+music.addEventListener("pause", () => {
+  isPlaying = false;
+  updateMusicButton();
+});
+
+/* PAGE NAVIGATION */
+
+function showPage(pageName) {
+
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
   });
 
-  document.getElementById(pageId).classList.add('active');
+  document.querySelectorAll("nav button").forEach(button => {
+    button.classList.remove("active");
+  });
+
+  const targetPage = document.getElementById(pageName);
+
+  if (targetPage) {
+    targetPage.classList.add("active");
+  }
 
   const activeButton = document.querySelector(
-    `.nav-links button[data-page="${pageId}"]`
+    `nav button[data-page="${pageName}"]`
   );
 
-  if(activeButton) {
-    activeButton.classList.add('active');
+  if (activeButton) {
+    activeButton.classList.add("active");
   }
 
   window.scrollTo({
     top: 0,
-    behavior: 'smooth'
+    behavior: "smooth"
   });
-
 }
 
-
-// DESSERT DATA
-
-const desserts = [
-
-  {
-    emoji: '🍓',
-    title: 'Strawberry Dream',
-    description: 'Just like strawberries and cream, you make ordinary days feel extra sweet. Thank you for being you. ♡'
-  },
-
-  {
-    emoji: '🧁',
-    title: 'Little Cup of Joy',
-    description: 'A tiny cupcake for someone who brings so much happiness into my life.'
-  },
-
-  {
-    emoji: '🍰',
-    title: 'Forever Slice',
-    description: 'If happiness were a cake, I would save the biggest slice just for you.'
-  },
-
-  {
-    emoji: '🍪',
-    title: 'Cookie Hugs',
-    description: 'A little reminder that you deserve warmth, kindness, and all the good things.'
-  },
-
-  {
-    emoji: '🍮',
-    title: 'Caramel Kisses',
-    description: 'Sweet, soft, and unforgettable. Just a little something to remind you how special you are.'
-  },
-
-  {
-    emoji: '🥐',
-    title: 'Morning Butter',
-    description: 'I hope every new morning gives you another reason to smile.'
-  }
-
-];
-
-
-// OPEN DESSERT
-
-function openDessert(index) {
-
-  const dessert = desserts[index];
-
-  document.getElementById('modalEmoji').textContent = dessert.emoji;
-  document.getElementById('modalTitle').textContent = dessert.title;
-  document.getElementById('modalDescription').textContent = dessert.description;
-
-  document.getElementById('dessertModal').classList.add('show');
-
-}
-
-function closeModal() {
-
-  document.getElementById('dessertModal').classList.remove('show');
-
-}
-
-function closeOutside(event) {
-
-  if(event.target.id === 'dessertModal') {
-    closeModal();
-  }
-
-}
-
-
-// SECRET RECIPE
-
-function revealRecipe() {
-
-  const recipe = document.getElementById('recipeContent');
-
-  recipe.classList.add('show');
-
-  recipe.scrollIntoView({
-    behavior: 'smooth',
-    block: 'nearest'
+document.querySelectorAll("nav button").forEach(button => {
+  button.addEventListener("click", () => {
+    showPage(button.dataset.page);
   });
-
-}
-
-
-// GUESTBOOK
-
-const guestForm = document.getElementById('guestForm');
-const guestMessages = document.getElementById('guestMessages');
-
-let messages = [];
-
-try {
-
-  messages = JSON.parse(
-    localStorage.getItem('petiteGuestbook') || '[]'
-  );
-
-  if(!Array.isArray(messages)) messages = [];
-
-} catch(error) {
-
-  messages = [];
-
-}
-
-
-// RENDER GUESTBOOK
-
-function renderMessages() {
-
-  guestMessages.innerHTML = '';
-
-  messages.forEach(message => {
-
-    const card = document.createElement('div');
-    card.className = 'message';
-
-    const name = document.createElement('strong');
-    name.textContent = message.name + ' ♡';
-
-    const content = document.createElement('p');
-    content.textContent = message.text;
-
-    card.append(name,content);
-
-    guestMessages.appendChild(card);
-
-  });
-
-}
-
-
-// SUBMIT GUESTBOOK
-
-guestForm.addEventListener('submit', function(event) {
-
-  event.preventDefault();
-
-  const name = document.getElementById('guestName').value.trim();
-  const text = document.getElementById('guestMessage').value.trim();
-
-  if(!name || !text) return;
-
-  messages.unshift({
-    name: name,
-    text: text
-  });
-
-  try {
-
-    localStorage.setItem(
-      'petiteGuestbook',
-      JSON.stringify(messages)
-    );
-
-  } catch(error) {
-
-    alert('Unable to save this message in your browser.');
-
-  }
-
-  renderMessages();
-  guestForm.reset();
-
 });
 
-renderMessages();
+/* DESSERT MODAL */
 
+function openDessert(title, icon, description) {
+  document.getElementById("modalTitle").textContent = title;
+  document.getElementById("modalIcon").textContent = icon;
+  document.getElementById("modalDescription").textContent = description;
+
+  document.getElementById("dessertModal").classList.add("show");
+}
+
+function closeDessert() {
+  document.getElementById("dessertModal").classList.remove("show");
+}
+
+document.getElementById("dessertModal").addEventListener("click", function(event) {
+  if (event.target === this) {
+    closeDessert();
+  }
+});
+
+/* SECRET RECIPE */
+
+document.getElementById("recipeBtn").addEventListener("click", function() {
+  const content = document.getElementById("recipeContent");
+
+  content.classList.toggle("show");
+
+  this.textContent = content.classList.contains("show")
+    ? "Hide the Recipe ♡"
+    : "Reveal the Recipe ♡";
+});
+
+/* GUESTBOOK */
+
+const guestForm = document.getElementById("guestForm");
+const guestEntries = document.getElementById("guestEntries");
+
+function loadGuestbook() {
+
+  guestEntries.innerHTML = "";
+
+  let savedEntries = [];
+
+  try {
+    savedEntries = JSON.parse(
+      localStorage.getItem("petiteGuestbook") || "[]"
+    );
+  } catch (error) {
+    savedEntries = [];
+  }
+
+  savedEntries.forEach(entry => {
+    addGuestEntry(entry.name, entry.message);
+  });
+}
+
+function addGuestEntry(name, message) {
+
+  const entry = document.createElement("div");
+  entry.className = "guest-entry";
+
+  const heading = document.createElement("h3");
+  heading.textContent = "♡ " + name;
+
+  const paragraph = document.createElement("p");
+  paragraph.textContent = message;
+
+  entry.appendChild(heading);
+  entry.appendChild(paragraph);
+
+  guestEntries.prepend(entry);
+}
+
+guestForm.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const name = document.getElementById("guestName").value.trim();
+  const message = document.getElementById("guestMessage").value.trim();
+
+  if (!name || !message) return;
+
+  let savedEntries = [];
+
+  try {
+    savedEntries = JSON.parse(
+      localStorage.getItem("petiteGuestbook") || "[]"
+    );
+  } catch (error) {
+    savedEntries = [];
+  }
+
+  const newEntry = { name, message };
+
+  savedEntries.push(newEntry);
+
+  try {
+    localStorage.setItem(
+      "petiteGuestbook",
+      JSON.stringify(savedEntries)
+    );
+  } catch (error) {
+    console.log("Could not save guestbook:", error);
+  }
+
+  addGuestEntry(name, message);
+  guestForm.reset();
+});
+
+loadGuestbook();
 </script>
 
 </body>
