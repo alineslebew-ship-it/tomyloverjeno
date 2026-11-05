@@ -1,0 +1,1312 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Petite Patisserie ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400,30,1;0,9..144,500,30,1;1,9..144,400,30,1&family=Nunito:wght@400;500;600;700;800&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream: #FFF1E8;
+  --pink: #F8DCE0;
+  --rose: #E9A7B0;
+  --darkrose: #D47F8C;
+  --sage: #B8C6A1;
+  --brown: #A65D68;
+  --text: #79524D;
+  --white: #FFFAF5;
+  --shadow: 0 10px 35px rgba(166,93,104,.12);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--cream);
+  color: var(--text);
+  font-family: 'Nunito', sans-serif;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:focus-visible, a:focus-visible {
+  outline: 3px solid var(--darkrose);
+  outline-offset: 4px;
+}
+
+h1, h2, h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: var(--rose);
+  color: white;
+}
+
+/* DECORATIONS */
+
+.floating-flower {
+  position: fixed;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .5;
+  font-size: 23px;
+  animation: float 5s ease-in-out infinite;
+}
+
+.flower-one { top: 25%; left: 2%; }
+.flower-two { top: 70%; right: 3%; animation-delay: 2s; }
+
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(-8deg); }
+  50% { transform: translateY(-15px) rotate(8deg); }
+}
+
+.container {
+  width: min(1100px, 90%);
+  margin: auto;
+}
+
+.script {
+  font-family: 'Caveat', cursive;
+  color: var(--darkrose);
+}
+
+/* NAVIGATION */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255,241,232,.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(166,93,104,.15);
+}
+
+.navbar {
+  width: min(1150px, 92%);
+  margin: auto;
+  min-height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 23px;
+  color: var(--brown);
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-links button {
+  border: none;
+  background: none;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 800;
+  transition: .3s;
+}
+
+.nav-links button:hover,
+.nav-links button.active {
+  color: var(--darkrose);
+}
+
+.music-button {
+  border: 1px solid var(--rose);
+  background: var(--white);
+  color: var(--brown);
+  border-radius: 50px;
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.music-button.playing {
+  background: var(--pink);
+}
+
+/* PAGE SYSTEM */
+
+.page {
+  display: none;
+  min-height: 75vh;
+  padding: 65px 0 90px;
+  animation: appear .55s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* GENERAL */
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+.section-heading h2 {
+  font-size: clamp(32px, 5vw, 48px);
+  color: var(--brown);
+  font-style: italic;
+}
+
+.section-heading p {
+  font-size: 14px;
+  margin-top: 10px;
+  opacity: .8;
+}
+
+.eyebrow {
+  color: var(--darkrose);
+  font-family: 'Caveat', cursive;
+  font-size: 24px;
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid var(--darkrose);
+  background: var(--darkrose);
+  color: white;
+  padding: 13px 28px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 13px;
+  transition: .3s;
+}
+
+.btn:hover {
+  background: var(--brown);
+  transform: translateY(-3px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--brown);
+}
+
+/* HOME */
+
+.hero {
+  min-height: 650px;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: center;
+  gap: 30px;
+  padding: 45px 0 65px;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-text h1 {
+  font-size: clamp(48px, 7vw, 78px);
+  line-height: 1.05;
+  color: var(--brown);
+  font-style: italic;
+  margin: 12px 0 18px;
+}
+
+.hero-text p {
+  line-height: 1.9;
+  font-size: 15px;
+  max-width: 360px;
+  margin-bottom: 28px;
+}
+
+.hero-illustration {
+  position: relative;
+  height: 440px;
+  border-radius: 48% 48% 25px 25px;
+  background: linear-gradient(150deg,#F7DCE4,#F8C7CF 55%,#EFC5BC);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow);
+}
+
+.hero-illustration:before {
+  content: "";
+  position: absolute;
+  width: 85%;
+  height: 95%;
+  border-radius: 50%;
+  background: rgba(255,250,245,.22);
+  top: 10%;
+}
+
+.cloud {
+  position: absolute;
+  color: white;
+  font-size: 37px;
+  opacity: .8;
+}
+
+.cloud-a { top: 45px; left: 30px; }
+.cloud-b { top: 90px; right: 30px; }
+
+.shop {
+  position: relative;
+  z-index: 2;
+  width: 73%;
+  margin-top: 65px;
+  height: 270px;
+  background: #FFF0DF;
+  border: 5px solid #DFA3A1;
+  border-radius: 15px 15px 8px 8px;
+  box-shadow: 0 15px 25px rgba(125,68,70,.15);
+}
+
+.shop-roof {
+  position: absolute;
+  top: -55px;
+  left: -5%;
+  width: 110%;
+  height: 65px;
+  border-radius: 50% 50% 8px 8px;
+  background: repeating-linear-gradient(
+    90deg,#D98290 0 35px,#FFF2E6 35px 70px
+  );
+  border: 4px solid #DFA3A1;
+}
+
+.shop-sign {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FFF9EE;
+  border: 2px solid #D99B9C;
+  border-radius: 50%;
+  padding: 12px 18px;
+  font-family: 'Fraunces',serif;
+  font-style: italic;
+  color: var(--brown);
+  white-space: nowrap;
+  font-size: 18px;
+}
+
+.shop-window {
+  position: absolute;
+  bottom: 0;
+  left: 12%;
+  width: 76%;
+  height: 115px;
+  background: #F4C5BB;
+  border: 7px solid #FFF9EE;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 39px;
+}
+
+.shop-door {
+  position: absolute;
+  bottom: 0;
+  right: -14px;
+  width: 48px;
+  height: 135px;
+  background: #DDA2A0;
+  border: 5px solid #FFF9EE;
+  border-radius: 30px 30px 0 0;
+}
+
+.shop-door:after {
+  content: "•";
+  color: #FFF0D8;
+  position: absolute;
+  right: 6px;
+  top: 65px;
+}
+
+.hero-decor {
+  position: absolute;
+  font-size: 42px;
+  z-index: 3;
+}
+
+.decor-cake { bottom: 38px; right: 10px; }
+.decor-flower { top: 90px; left: 8px; }
+.decor-star { top: 150px; right: 30px; font-size: 25px; }
+
+/* HOME SPECIAL */
+
+.special-card {
+  background: var(--white);
+  border: 1px solid var(--pink);
+  border-radius: 25px;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+}
+
+.special-cake {
+  font-size: 80px;
+  background: var(--pink);
+  width: 125px;
+  height: 125px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.special-card h3 {
+  color: var(--brown);
+  font-size: 24px;
+  margin: 8px 0;
+}
+
+/* MENU */
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 25px;
+}
+
+.dessert-card {
+  background: var(--white);
+  border-radius: 22px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid var(--pink);
+  box-shadow: var(--shadow);
+  transition: .35s;
+  cursor: pointer;
+}
+
+.dessert-card:hover {
+  transform: translateY(-9px) rotate(-1deg);
+}
+
+.dessert-art {
+  height: 160px;
+  border-radius: 16px;
+  background: var(--pink);
+  display: grid;
+  place-items: center;
+  font-size: 75px;
+  margin-bottom: 17px;
+}
+
+.dessert-card:nth-child(2n) .dessert-art {
+  background: #E6EBD9;
+}
+
+.dessert-card:nth-child(3n) .dessert-art {
+  background: #F5E3D1;
+}
+
+.dessert-card h3 {
+  font-size: 23px;
+  margin-bottom: 7px;
+}
+
+.dessert-card p {
+  font-size: 12px;
+  opacity: .75;
+  line-height: 1.7;
+}
+
+.tap-label {
+  display: block;
+  font-size: 11px;
+  color: var(--darkrose);
+  font-weight: 800;
+  margin-top: 13px;
+}
+
+/* MEMORIES */
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 25px;
+}
+
+.memory-card {
+  background: var(--white);
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  transform: rotate(-1deg);
+}
+
+.memory-card:nth-child(even) {
+  transform: rotate(1deg);
+}
+
+.memory-image {
+  height: 190px;
+  border-radius: 13px;
+  background: linear-gradient(135deg,#F8DCE0,#E6EBD9);
+  display: grid;
+  place-items: center;
+  font-size: 65px;
+}
+
+.memory-card h3 {
+  font-size: 22px;
+  margin: 14px 5px 5px;
+}
+
+.memory-card p {
+  font-size: 13px;
+  margin: 0 5px 8px;
+  line-height: 1.7;
+}
+
+/* SECRET RECIPE */
+
+.recipe-box {
+  max-width: 620px;
+  margin: auto;
+  background: var(--white);
+  border: 2px dashed var(--rose);
+  border-radius: 25px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.recipe-icon {
+  font-size: 75px;
+  margin-bottom: 15px;
+}
+
+.recipe-box h2 {
+  font-size: 33px;
+  color: var(--brown);
+  margin-bottom: 12px;
+}
+
+.recipe-content {
+  display: none;
+  margin-top: 25px;
+  line-height: 2;
+  background: var(--pink);
+  border-radius: 18px;
+  padding: 25px;
+  animation: appear .6s ease;
+}
+
+.recipe-content.show {
+  display: block;
+}
+
+/* GUESTBOOK */
+
+.guestbook {
+  max-width: 600px;
+  margin: auto;
+  background: var(--white);
+  padding: 30px;
+  border-radius: 25px;
+  box-shadow: var(--shadow);
+}
+
+.guestbook input,
+.guestbook textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: 1px solid var(--pink);
+  background: #FFFAF7;
+  border-radius: 12px;
+  font-family: inherit;
+  color: var(--text);
+  outline: none;
+}
+
+.guestbook textarea {
+  height: 110px;
+  resize: vertical;
+}
+
+.guestbook input:focus,
+.guestbook textarea:focus {
+  border-color: var(--darkrose);
+}
+
+.guest-messages {
+  margin-top: 30px;
+  display: grid;
+  gap: 12px;
+}
+
+.message {
+  background: var(--pink);
+  padding: 18px;
+  border-radius: 15px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.message strong {
+  color: var(--brown);
+}
+
+/* MODAL */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(75,47,48,.4);
+  backdrop-filter: blur(5px);
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-box {
+  width: min(420px,100%);
+  background: var(--white);
+  padding: 35px;
+  text-align: center;
+  border-radius: 25px;
+  position: relative;
+  animation: appear .35s ease;
+}
+
+.modal-emoji {
+  font-size: 75px;
+  margin-bottom: 15px;
+}
+
+.modal-box h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: var(--brown);
+}
+
+.modal-box p {
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.close-modal {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  border: none;
+  background: none;
+  font-size: 24px;
+  color: var(--brown);
+}
+
+/* FOOTER */
+
+footer {
+  background: #F5DDE0;
+  text-align: center;
+  padding: 35px 15px;
+  color: var(--brown);
+  line-height: 2;
+}
+
+footer h2 {
+  font-style: italic;
+  font-size: 27px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px) {
+  .navbar {
+    flex-wrap: wrap;
+    padding: 13px 0;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 17px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links button {
+    font-size: 11px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 30px;
+  }
+
+  .hero-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-illustration {
+    height: 350px;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+  }
+
+  .menu-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media(max-width:500px) {
+  .menu-grid,
+  .memory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .special-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 53px;
+  }
+
+  .hero-illustration {
+    height: 310px;
+  }
+
+  .shop {
+    width: 78%;
+  }
+
+  .page {
+    padding-top: 45px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="floating-flower flower-one">✿</div>
+<div class="floating-flower flower-two">✿</div>
+
+<header>
+  <nav class="navbar">
+    <a class="logo" href="#" onclick="showPage('home');return false;">
+      petite patisserie ♡
+    </a>
+
+    <div class="nav-links">
+      <button class="active" data-page="home" onclick="showPage('home')">Home</button>
+      <button data-page="menu" onclick="showPage('menu')">The Menu</button>
+      <button data-page="memories" onclick="showPage('memories')">Sweet Memories</button>
+      <button data-page="recipe" onclick="showPage('recipe')">Secret Recipe</button>
+      <button data-page="guestbook" onclick="showPage('guestbook')">Guestbook</button>
+    </div>
+
+    <button class="music-button" id="musicBtn" onclick="toggleMusic()">
+      ♫ Play Music
+    </button>
+  </nav>
+</header>
+
+<audio id="bgMusic" src="love.mp3" loop preload="none"></audio>
+
+<main>
+
+<!-- HOME PAGE -->
+
+<section class="page active" id="home">
+  <div class="container">
+
+    <div class="hero">
+
+      <div class="hero-text">
+        <span class="eyebrow">A little place full of sweetness ♡</span>
+
+        <h1>Welcome to<br>Petite Patisserie.</h1>
+
+        <p>
+          A tiny bakery filled with lovely little things,
+          sweet surprises, pretty flowers and everything
+          that reminds me of you.
+        </p>
+
+        <button class="btn" onclick="showPage('menu')">
+          Step inside ♡
+        </button>
+
+        <p class="script" style="font-size:25px;margin-top:20px;">
+          freshly baked with love.
+        </p>
+      </div>
+
+      <div class="hero-illustration">
+
+        <span class="cloud cloud-a">☁</span>
+        <span class="cloud cloud-b">☁</span>
+
+        <span class="hero-decor decor-flower">🌷</span>
+        <span class="hero-decor decor-star">✧</span>
+        <span class="hero-decor decor-cake">🍰</span>
+
+        <div class="shop">
+          <div class="shop-roof"></div>
+          <div class="shop-sign">petite patisserie</div>
+
+          <div class="shop-window">
+            <span>🍰</span>
+            <span>🧁</span>
+            <span>🍓</span>
+          </div>
+
+          <div class="shop-door"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section-heading">
+      <span class="eyebrow">made specially for you</span>
+      <h2>Today's Special ♡</h2>
+      <p>A little sweetness picked just for someone special.</p>
+    </div>
+
+    <div class="special-card">
+      <div class="special-cake">🍓</div>
+
+      <div>
+        <span class="eyebrow">our signature dessert</span>
+        <h3>Strawberry Dream Cake</h3>
+        <p>
+          Soft, sweet, and filled with little reasons
+          why someone is so special.
+        </p>
+        <button class="btn" style="margin-top:15px;"
+          onclick="openDessert(0)">
+          Discover more ♡
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- MENU PAGE -->
+
+<section class="page" id="menu">
+  <div class="container">
+
+    <div class="section-heading">
+      <span class="eyebrow">fresh from our little kitchen</span>
+      <h2>The Sweet Menu</h2>
+      <p>Every dessert has a little story behind it. Tap to discover!</p>
+    </div>
+
+    <div class="menu-grid">
+
+      <div class="dessert-card" onclick="openDessert(0)">
+        <div class="dessert-art">🍓</div>
+        <h3>Strawberry Dream</h3>
+        <p>A little sweetness that makes every day better.</p>
+        <span class="tap-label">TAP TO OPEN ♡</span>
+      </div>
+
+      <div class="dessert-card" onclick="openDessert(1)">
+        <div class="dessert-art">🧁</div>
+        <h3>Little Cup of Joy</h3>
+        <p>A tiny reminder that happiness lives in little things.</p>
+        <span class="tap-label">TAP TO OPEN ♡</span>
+      </div>
+
+      <div class="dessert-card" onclick="openDessert(2)">
+        <div class="dessert-art">🍰</div>
+        <h3>Forever Slice</h3>
+        <p>A special piece reserved for my favorite person.</p>
+        <span class="tap-label">TAP TO OPEN ♡</span>
+      </div>
+
+      <div class="dessert-card" onclick="openDessert(3)">
+        <div class="dessert-art">🍪</div>
+        <h3>Cookie Hugs</h3>
+        <p>Warm little moments wrapped in sweetness.</p>
+        <span class="tap-label">TAP TO OPEN ♡</span>
+      </div>
+
+      <div class="dessert-card" onclick="openDessert(4)">
+        <div class="dessert-art">🍮</div>
+        <h3>Caramel Kisses</h3>
+        <p>Something sweet that stays in your heart.</p>
+        <span class="tap-label">TAP TO OPEN ♡</span>
+      </div>
+
+      <div class="dessert-card" onclick="openDessert(5)">
+        <div class="dessert-art">🥐</div>
+        <h3>Morning Butter</h3>
+        <p>For all the beautiful mornings yet to come.</p>
+        <span class="tap-label">TAP TO OPEN ♡</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- MEMORIES PAGE -->
+
+<section class="page" id="memories">
+  <div class="container">
+
+    <div class="section-heading">
+      <span class="eyebrow">a collection of little moments</span>
+      <h2>Sweet Memories</h2>
+      <p>Some moments deserve to be kept forever.</p>
+    </div>
+
+    <div class="memory-grid">
+
+      <div class="memory-card">
+        <div class="memory-image">🌷</div>
+        <h3>Our First Chapter</h3>
+        <p>Every beautiful story starts somewhere. This is ours.</p>
+      </div>
+
+      <div class="memory-card">
+        <div class="memory-image">🎀</div>
+        <h3>Little Things</h3>
+        <p>The smallest moments often become my favorite memories.</p>
+      </div>
+
+      <div class="memory-card">
+        <div class="memory-image">☁️</div>
+        <h3>Cloud Nine Days</h3>
+        <p>Days that somehow feel a little brighter because of you.</p>
+      </div>
+
+      <div class="memory-card">
+        <div class="memory-image">💌</div>
+        <h3>To Be Continued...</h3>
+        <p>There are still so many memories waiting to be made.</p>
+      </div>
+
+    </div>
+
+    <p class="script" style="text-align:center;font-size:27px;margin-top:35px;">
+      and many more chapters to come ♡
+    </p>
+
+  </div>
+</section>
+
+
+<!-- SECRET RECIPE PAGE -->
+
+<section class="page" id="recipe">
+  <div class="container">
+
+    <div class="section-heading">
+      <span class="eyebrow">shhh... it's a secret!</span>
+      <h2>The Secret Recipe</h2>
+      <p>Our baker has prepared something special.</p>
+    </div>
+
+    <div class="recipe-box">
+
+      <div class="recipe-icon">🎀</div>
+
+      <h2>A Recipe for You</h2>
+
+      <p>
+        This recipe is not available on the regular menu.
+        Only someone special can unlock it.
+      </p>
+
+      <button class="btn" style="margin-top:25px;"
+        onclick="revealRecipe()">
+        Reveal the recipe ♡
+      </button>
+
+      <div class="recipe-content" id="recipeContent">
+        <span style="font-size:35px;">🍓</span>
+
+        <h3 style="font-family:'Fraunces';font-size:25px;">
+          The Sweetest Recipe
+        </h3>
+
+        <p>
+          2 cups of your beautiful smile.<br>
+          3 spoons of your kindness.<br>
+          A handful of silly little moments.<br>
+          A sprinkle of patience.<br>
+          And an unlimited amount of love.
+        </p>
+
+        <p style="margin-top:15px;font-weight:800;">
+          Mix everything together.<br>
+          Best served with you. ♡
+        </p>
+
+        <p class="script" style="font-size:24px;margin-top:15px;">
+          made with love, especially for you.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- GUESTBOOK PAGE -->
+
+<section class="page" id="guestbook">
+  <div class="container">
+
+    <div class="section-heading">
+      <span class="eyebrow">leave a little sweetness behind</span>
+      <h2>Our Guestbook</h2>
+      <p>Every little note deserves a place here.</p>
+    </div>
+
+    <div class="guestbook">
+
+      <h3 style="font-size:27px;text-align:center;">
+        A little note for the baker ♡
+      </h3>
+
+      <form id="guestForm">
+
+        <input id="guestName"
+          type="text"
+          maxlength="35"
+          placeholder="Your name..."
+          required>
+
+        <textarea id="guestMessage"
+          maxlength="500"
+          placeholder="Write something sweet..."
+          required></textarea>
+
+        <button class="btn" type="submit" style="width:100%;">
+          Leave a message ♡
+        </button>
+
+      </form>
+
+      <div class="guest-messages" id="guestMessages">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- DESSERT MODAL -->
+
+<div class="modal" id="dessertModal" onclick="closeOutside(event)">
+  <div class="modal-box">
+
+    <button class="close-modal" onclick="closeModal()">×</button>
+
+    <div class="modal-emoji" id="modalEmoji">🍓</div>
+
+    <h2 id="modalTitle">Strawberry Dream</h2>
+
+    <p id="modalDescription">
+      A little sweetness just for you.
+    </p>
+
+    <button class="btn" style="margin-top:22px;"
+      onclick="closeModal()">
+      So sweet! ♡
+    </button>
+
+  </div>
+</div>
+
+
+<footer>
+  <h2>petite patisserie ♡</h2>
+  <p>A little bakery, made with a lot of love.</p>
+  <p style="font-size:12px;margin-top:8px;">
+    baked with love, just for you. ✿
+  </p>
+</footer>
+
+
+<script>
+
+// PAGE NAVIGATION
+
+function showPage(pageId) {
+
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active');
+  });
+
+  document.querySelectorAll('.nav-links button').forEach(btn => {
+    btn.classList.remove('active');
+  });
+
+  document.getElementById(pageId).classList.add('active');
+
+  const activeButton = document.querySelector(
+    `.nav-links button[data-page="${pageId}"]`
+  );
+
+  if(activeButton) {
+    activeButton.classList.add('active');
+  }
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+
+// MUSIC PLAYER
+
+const music = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+
+async function toggleMusic() {
+
+  if(music.paused) {
+
+    try {
+      await music.play();
+      musicBtn.innerHTML = '♫ Playing...';
+      musicBtn.classList.add('playing');
+    } catch(error) {
+      musicBtn.innerHTML = '♫ Try Again';
+      alert('Please make sure love.mp3 is in the same folder as index.html.');
+    }
+
+  } else {
+
+    music.pause();
+    musicBtn.innerHTML = '♫ Play Music';
+    musicBtn.classList.remove('playing');
+
+  }
+}
+
+
+// DESSERT INFORMATION
+
+const desserts = [
+
+  {
+    emoji: '🍓',
+    title: 'Strawberry Dream',
+    description: 'Just like strawberries and cream, you make ordinary days feel extra sweet. Thank you for being you. ♡'
+  },
+
+  {
+    emoji: '🧁',
+    title: 'Little Cup of Joy',
+    description: 'A tiny cupcake for someone who brings so much happiness into my life.'
+  },
+
+  {
+    emoji: '🍰',
+    title: 'Forever Slice',
+    description: 'If happiness were a cake, I would save the biggest slice just for you.'
+  },
+
+  {
+    emoji: '🍪',
+    title: 'Cookie Hugs',
+    description: 'A little reminder that you deserve warmth, kindness, and all the good things.'
+  },
+
+  {
+    emoji: '🍮',
+    title: 'Caramel Kisses',
+    description: 'Sweet, soft, and unforgettable. Just a little something to remind you how special you are.'
+  },
+
+  {
+    emoji: '🥐',
+    title: 'Morning Butter',
+    description: 'I hope every new morning gives you another reason to smile.'
+  }
+
+];
+
+function openDessert(index) {
+
+  const dessert = desserts[index];
+
+  document.getElementById('modalEmoji').textContent = dessert.emoji;
+  document.getElementById('modalTitle').textContent = dessert.title;
+  document.getElementById('modalDescription').textContent = dessert.description;
+
+  document.getElementById('dessertModal').classList.add('show');
+
+}
+
+function closeModal() {
+  document.getElementById('dessertModal').classList.remove('show');
+}
+
+function closeOutside(event) {
+  if(event.target.id === 'dessertModal') {
+    closeModal();
+  }
+}
+
+
+// SECRET RECIPE
+
+function revealRecipe() {
+
+  const recipe = document.getElementById('recipeContent');
+
+  recipe.classList.add('show');
+
+  recipe.scrollIntoView({
+    behavior: 'smooth',
+    block: 'nearest'
+  });
+
+}
+
+
+// GUESTBOOK WITH LOCAL STORAGE
+
+const guestForm = document.getElementById('guestForm');
+const guestMessages = document.getElementById('guestMessages');
+
+let messages = [];
+
+try {
+  messages = JSON.parse(
+    localStorage.getItem('petiteGuestbook') || '[]'
+  );
+
+  if(!Array.isArray(messages)) messages = [];
+} catch(error) {
+  messages = [];
+}
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  })[char]);
+}
+
+function renderMessages() {
+
+  guestMessages.innerHTML = '';
+
+  messages.forEach(message => {
+
+    const card = document.createElement('div');
+    card.className = 'message';
+
+    const name = document.createElement('strong');
+    name.textContent = message.name + ' ♡';
+
+    const content = document.createElement('p');
+    content.textContent = message.text;
+
+    card.append(name, content);
+    guestMessages.appendChild(card);
+
+  });
+
+}
+
+guestForm.addEventListener('submit', function(event) {
+
+  event.preventDefault();
+
+  const name = document.getElementById('guestName').value.trim();
+  const text = document.getElementById('guestMessage').value.trim();
+
+  if(!name || !text) return;
+
+  messages.unshift({
+    name: name,
+    text: text
+  });
+
+  try {
+    localStorage.setItem(
+      'petiteGuestbook',
+      JSON.stringify(messages)
+    );
+  } catch(error) {
+    alert('Unable to save this message in your browser.');
+  }
+
+  renderMessages();
+  guestForm.reset();
+
+});
+
+renderMessages();
+
+</script>
+
+</body>
+</html>
